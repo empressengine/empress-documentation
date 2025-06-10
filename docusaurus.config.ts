@@ -9,8 +9,8 @@ const config: Config = {
   tagline: 'Документация экосистемы движка',
   favicon: 'img/favicon.ico',
 
-  url: 'https://localhost',
-  baseUrl: '/',
+  url: 'https://empressengine.github.io',
+  baseUrl: '/documentation/',
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
