@@ -206,6 +206,10 @@ Entity-Component-System (ECS) — это архитектурный паттер
 
 - **Отсутствие явной иерархии**: в традиционном ООП-стиле легко проследить наследование, тогда как в ECS логику нужно искать в системах.
 
+### Флоу работы Empress Core
+
+<iframe style={{border: '1px solid rgba(0, 0, 0, 0.1)'}} width="800" height="450" src="https://embed.figma.com/board/KfQECHnqNC6S1O7sSSj4fv/Empress-Core-Flow?node-id=0-1&embed-host=share" allowfullscreen />
+
 ### Основные компоненты
 
 #### [Entity (Сущность)](data/entity)
