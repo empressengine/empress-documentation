@@ -23,8 +23,8 @@ const sidebars: SidebarsConfig = {
       label: 'Ядро: имплементация ECS',
       items: [
         'core/what-is-empress',
-        'core/empress-core',
         'core/comparison',
+        'core/empress-core',
         {
           type: 'category',
           label: 'Flow',
@@ -72,6 +72,13 @@ const sidebars: SidebarsConfig = {
             'core/shared/timer',
           ],
         },
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Рендеринг: интеграция с Pixi',
+      items: [
+        'pixi/pixi-integration',
       ],
     },
     {
