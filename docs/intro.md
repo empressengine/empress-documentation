@@ -22,17 +22,7 @@ Empress Core имплементирует смешанный update- и event-dr
 npm install empress-core
 ```
 
-#### Использование в TypeScript
-
-```typescript
-import { Entity, Component, System } from 'empress-core';
-```
-
-#### Зависимости
-
-- TypeScript 5.6+
-
-#### Настройка проекта
+### Настройка проекта
 
 Добавьте необходимые настройки TypeScript в `tsconfig.json`:
 
@@ -51,13 +41,31 @@ import { Entity, Component, System } from 'empress-core';
 
 [Empress Core на GitHub](https://github.com/empressengine/empress-core)
 
-## Empress Store
+### Зависимости
+
+- TypeScript 5.6+
+
+## [Empress Store](empress-store)
 
 Empress Store - это модуль реактивного хранилища данных, который обеспечивает возможность хранения и управления состоянием приложения в реактивном режиме. Особенность Empress Store в том, что он реализует механизм слияния состояний, что позволяет создавать сложные состояния на основе нескольких источников данных. 
 
 Также имплмегтирована поддержка middleware, что позволяет добавлять дополнительные функции к состоянию, например логирование изменений, сохранение состояния в localStorage и т.д.
 
 Данные в Empress Store имутабельны, что обеспечивает предсказуемость и возможность отслеживания изменений. Измненения позволено вносить исключительно через методы Store.
+
+### Установка
+
+```bash
+npm install empress-store
+```
+
+### Репозиторий
+
+[Empress Store на GitHub](https://github.com/empressengine/empress-store)
+
+### Зависимости
+
+- TypeScript 5.6+
 
 ## Empress FSM
 
