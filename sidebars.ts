@@ -24,6 +24,7 @@ const sidebars: SidebarsConfig = {
       items: [
         'core/what-is-empress',
         'core/empress-core',
+        'core/comparison',
         {
           type: 'category',
           label: 'Flow',
