@@ -79,6 +79,11 @@ const sidebars: SidebarsConfig = {
       id: 'empress-store',
       label: 'Empress Store',
     },
+    {
+      type: 'doc',
+      id: 'empress-fsm',
+      label: 'Empress FSM',
+    }
   ],
 };
 
