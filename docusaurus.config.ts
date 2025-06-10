@@ -10,7 +10,7 @@ const config: Config = {
   favicon: 'img/favicon.ico',
 
   url: 'https://empressengine.github.io',
-  baseUrl: '/documentation/',
+  baseUrl: '/empress-documentation/',
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
