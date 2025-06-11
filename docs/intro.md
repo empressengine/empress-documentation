@@ -2,6 +2,8 @@
 sidebar_position: 1
 ---
 
+![Empress Logo](/img/empress_logo_big.png)
+
 # Экосистема Empress
 
 Экосистема Empress реализует модули для разработки браузерных игр на TypeScript.
