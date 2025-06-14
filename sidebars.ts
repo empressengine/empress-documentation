@@ -22,7 +22,11 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Ядро: имплементация ECS',
       items: [
-        'core/what-is-empress',
+        {
+          type: 'doc',
+          id: 'core/what-is-empress',
+          label: 'Что такое Empress Core?',
+        },
         'core/comparison',
         'core/empress-core',
         {
@@ -78,7 +82,11 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Рендеринг: интеграция с Pixi',
       items: [
-        'pixi/pixi-integration',
+        {
+          type: 'doc',
+          id: 'pixi/pixi-integration',
+          label: 'Интеграция Empress с Pixi',
+        },
       ],
     },
     {

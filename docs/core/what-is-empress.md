@@ -1,6 +1,4 @@
----
-sidebar_position: 1
----
+![Empress Core Logo](/img/empress_logo_big_core.png)
 
 # Что такое Empress Core?
 

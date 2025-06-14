@@ -1,3 +1,5 @@
+![Empress Store Logo](/img/empress_logo_big_store.png)
+
 # Empress Store
 
 Empress Store - это типобезопасная библиотека управления состоянием для Empress приложений с поддержкой реактивности, валидации и оптимизированных обновлений. 

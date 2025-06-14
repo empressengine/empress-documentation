@@ -1,3 +1,6 @@
+![Empress Pixi Logo](/img/empress_logo_big_pixi.png)
+
+
 # Интеграция Empress с Pixi
 
 !--- ОБШИРНАЯ ДОКУМЕНТАЦИЯ В ПРОЦЕССЕ НАПИСАНИЯ ---!
