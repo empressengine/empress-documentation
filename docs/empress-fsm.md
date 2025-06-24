@@ -8,6 +8,7 @@ Empress FSM - это конечный автомат, разработанный
 
 - Интеграция с [Empress Store](./empress-store) для управления данными
 - Интеграция с [Empress Core](./core/what-is-empress) для выполнения SystemGroup в стейтах
+- Возможность подключения к любому Store (включая Redux, Zustand, Pinia, etc), через IStoreAdapter
 - Выполнение Групп Систем в порядке их добавления
 - Два режима перехода между состояниями:
   - Stop: немедленный переход с прерыванием текущего состояния
@@ -90,6 +91,83 @@ await gameFSM.start();
 gameFSM.update(state => ({
   score: state.score - 10
 }));
+```
+
+## Использование с другими Store
+
+Для использования Empress FSM с другими Store, вам нужно создать StoreAdapter, реализующий интерфейс IStoreAdapter.
+
+```typescript
+import { IStoreAdapter } from 'empress-fsm/store-adapter';
+
+class CustomStoreAdapter implements IStoreAdapter {
+  getState(): any {
+    // Получение состояния
+  }
+
+  getPrevState(): any {
+    // Получение предыдущего состояния
+  }
+
+  update(updater: (state: any) => Partial<any>): void {
+    // Обновление состояния
+  }
+
+  subscribe(listener: (state: any, prev: any) => void): () => void {
+    // Подписка на изменения
+    return () => {};
+  }
+
+  unsubscribe(): void {
+    // Отписка от изменений
+  }
+}
+```
+
+Далее при необходимости создайте StoreFactory, реализующий интерфейс IStoreFactory.
+
+```typescript
+import { IStoreFactory } from 'empress-fsm/factory/models';
+
+class CustomStoreFactory implements IStoreFactory {
+  create<T extends object>(initialState: T): IStoreAdapter<T> {
+    // Создание StoreAdapter
+    return new CustomStoreAdapter();
+  }
+}
+```
+
+Подключите StoreFactory к FSM:
+
+```typescript
+// Создаем StoreAdapter через Factory
+const store = new CustomStoreFactory().create<GameState>({
+  score: 0,
+  level: 1
+});
+
+const fsm = new FSM(executionController, {
+  name: 'game',
+  storeAdapter: store,
+  initialState: 'playing',
+  states: [
+    {
+      name: 'playing',
+      onEnter: [PlayingOnEnterGroup],
+      transitionStrategy: TransitionStrategy.Stop,
+      transitions: [
+        {
+          to: 'gameOver',
+          condition: (store) => store.getState().score < 0
+        }
+      ],
+    },
+    {
+      name: 'gameOver',
+      onEnter: [GameOverOnEnterGroup],
+    }
+  ]
+});
 ```
 
 ## Лицензия
