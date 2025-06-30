@@ -468,19 +468,16 @@ class RenderSystem extends System {
 
 // Группы систем
 class PhysicsGroup extends SystemGroup<{deltaTime: number}> {
-  public setup(data: {deltaTime: number}): void {
-    return [
-      // Передача внешних данных внутрь Системы
-      { this.provide(PhysicsSystem, data) }
-    ];
+  public setup(chain: SystemChain, data: {deltaTime: number}): void {
+    // Передача внешних данных внутрь Системы
+    chain.add(PhysicsSystem, data);
   }
 }
 
 class RenderGroup extends SystemGroup {
-  public setup(): void {
-    return [
-      { this.provide(RenderSystem, null) }
-    ];
+  public setup(chain: SystemChain): void {
+    // Если Система не требует данных, то вторым аргументом ничего не передаем
+    chain.add(RenderSystem);
   }
 }
 

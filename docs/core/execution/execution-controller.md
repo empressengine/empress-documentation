@@ -92,13 +92,8 @@ console.log('Total queues:', controller.queueSize);
 ### Асинхронное выполнение
 ```typescript
 class LoadingGroup extends SystemGroup {
-    public setup() {
-        return [
-            {
-                instance: this.provide(LoadAssetsSystem),
-                // Асинхронная система
-            }
-        ];
+    public setup(chain: SystemChain): void {
+        chain.add(LoadAssetsSystem);    // Асинхронная система
     }
 }
 

@@ -26,37 +26,22 @@ sidebar_position: 2
 ### Создание группы
 ```typescript
 class MovementGroup extends SystemGroup<Vec2> {
-    public setup(data: Vec2): IGroupOption[] {
-        return [
-            // Простая регистрация
-            {
-                instance: this.provide(MovementSystem)
-            },
-            
-            // С передачей данных
-            {
-                instance: this.provide(VelocitySystem, data)
-            },
-            
-            // С дополнительным фильтром
-            {
-                instance: this.provide(CollisionSystem),
-                includes: [ColliderComponent],
-                excludes: [DisabledComponent]
-            },
-            
-            // С повторным выполнением
-            {
-                instance: this.provide(PhysicsSystem),
-                repeat: 3
-            },
-            
-            // С условным выполнением
-            {
-                instance: this.provide(AnimationSystem),
-                canExecute: (data) => data.x !== 0 || data.y !== 0
-            }
-        ];
+    public setup(chain: SystemChain, data: Vec2): void {
+        chain
+            .add(MovementSystem)                    // Простая регистрация
+            .add(VelocitySystem, data)              // С передачей данных
+            .add(
+                CollisionSystem,                    // С дополнительным фильтром
+                { 
+                    includes: [ColliderComponent], 
+                    excludes: [DisabledComponent]
+                }
+            )
+            .add(PhysicsSystem, { repeat: 3 })      // С повторным выполнением
+            .add(
+                AnimationSystem,                    // С условным выполнением
+                { canExecute: (data) => data.x !== 0 || data.y !== 0 }
+            );
     }
 
     // Переопределение зависимостей
@@ -72,19 +57,19 @@ class MovementGroup extends SystemGroup<Vec2> {
 ```
 
 ### Порядок выполнения
-```typescript
-// Явное указание порядка через свойство order
-{
-    instance: this.provide(FirstSystem),
-    order: 100
-},
-{
-    instance: this.provide(SecondSystem),
-    order: 200
-}
 
-// Если order не указан, системы выполняются в порядке объявления
-// с шагом 10000 между ними
+Все Системы выполняются в порядке добавления в цепочку вызовов.
+Никаких дополнительных настроек для ордеринга не требуется. Если
+подразумевается данимачисекий порядок выполнения, проще реализовать 
+отдельные группы под каждый кейс.
+
+Важно такде понимать, если Система возвращает Promise, то выполнение последующих
+в цепочке Группы Систем будет дожидатся разрешения Промиса текущей Системы.
+
+```typescript
+chain
+    .add(FirstSystem)       // Выполнится FirstSystem
+    .add(SecondSystem);     // После выполнится SecondSystem
 ```
 
 ## API
@@ -92,8 +77,7 @@ class MovementGroup extends SystemGroup<Vec2> {
 ### Класс SystemGroup
 
 #### Методы
-- `setup(data: T): IGroupOption[]` - определяет порядок и настройки выполнения Систем
-- `provide(system: SystemType, data?: any): ISystemProvider` - создает провайдер для Системы
+- `setup(chain: SystemChain, data?: T): void` - определяет порядок и настройки выполнения Систем
 - `setupDependencies(): Provider[]` - определяет зависимости для Систем в группе
 
 ### Интерфейс IGroupOption

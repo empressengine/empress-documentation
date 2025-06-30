@@ -75,12 +75,8 @@ export class MovementSystem extends System<IUpdateLoopData> {
 #### Создание Груп Выполнения
 ```typescript
 class MovementGroup extends SystemGroup<IUpdateLoopData> {
-   public setup(data: IUpdateLoopData): : IGroupOption[] {
-      return [
-            {
-                instance: this.provide(MovementSystem, data)
-            },
-        ];
+   public setup(chain: SystemChain, data: IUpdateLoopData): void {
+    chain.add(MovementSystem, data);
    }
 }
 ```

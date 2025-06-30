@@ -45,14 +45,11 @@ const sameSystem = container.get(MovementSystem);
 ### Использование в SystemGroup
 ```typescript
 class MovementGroup extends SystemGroup<Vec2> {
-    public setup(data: Vec2): IGroupOption[] {
-        return [
-            // SystemsContainer автоматически создаст или вернет
-            // существующий инстанс MovementSystem
-            {
-                instance: this.provide(MovementSystem, data)
-            }
-        ];
+    public setup(chain: SystemChain, data: Vec2): void {
+        // SystemsContainer автоматически создаст или вернет
+        // существующий инстанс MovementSystem
+
+        chain.add(MovementSystem, data);
     }
 }
 ```
